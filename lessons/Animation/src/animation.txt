@@ -1,0 +1,150 @@
+/* property: defines wich property the transition will be applied to */
+transition-property: transform; 
+
+/* Duration: How long for the transition to complete */
+transition-duration: 0.3s;
+
+/* Timing-function: defines acceleration curve for the transition: ease <-- default */
+transition-timing-function:ease ;
+
+/* Delay: how long for the transition to take effect */
+transition-delay: 0s;
+
+
+---------------------------------------------   ShortHand 
+transition: transform 0.3s ease 0s  
+
+If default values === No need to code. ------>>  transition: transform 0.3s
+
+
+
+
+
+ ======================================= keyFrames 
+
+
+ heading{
+  animation-name: ;  <--- Nombre del keyFrame
+  animation-duration: ;  <--- time it takes for the animation for one lap. from 0% to 100%
+  animation-timing-function: ease;  <-- Acceleration curve for the animation. (Same parameters as in transition)
+  animation-delay: ; <-- How long for the animation to run
+  animation-iteration-count: ; <--- How many times the animation will run
+  animation-direction: normal; <--- it can chnage the direccion or the key frames (from and to  values to reverse)
+  animation-fill-mode: ; <-- How the animation will aplly the styles from the keyFrame before and after its execuition
+  After the animation is completed the element affected by the animation, the element can be styled.  
+}
+
+
+
+
+COMPLETE CODE .
+
+.App{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+ /* .btn{
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  color: rgb(252, 54, 87);
+  background-color: pink;
+  border: 10px solid rgb(252, 54, 87) ;
+  border-radius: 5px;
+
+
+}
+
+.btn:hover{
+  transform: translateY(-10px);
+} */
+
+
+.btn{
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  color: rgb(252, 54, 87);
+  background-color: pink;
+  border: 10px solid rgb(252, 54, 87) ;
+  border-radius: 5px;
+
+  /* transition: transform 0.3s ease 0s;   <--- opcion 1         */
+  /* transition: transform 0.3s;  <--- Opcion 2        */
+
+  /* Para afectar varias propiedades el mismo tiempo */
+  /* transition: transform 0.3s, background-color 0.3s, color 0.3s;  <--- Opcion 1 */
+  /* transition: all 0.3; <---- Opcion 2 */
+
+  transition: all .3s;
+} 
+
+.btn:hover{
+  transform: translateY(-10px);
+  background-color: rgb(252, 54, 87);
+  color: white;
+}
+
+
+/* Crear keyFrame --> from = desde donde inicia la animacion. TO = Donde temrina la animacion */
+
+
+@keyframes slideInLeft {
+
+  from {
+    transform: translateX(-300px);
+  }
+  
+  to{
+    transform: translateX(0);
+  }
+
+}
+/* To save code... the className can be changed to the name of the keyFrame. */
+.heading{                                    
+  /* animation-name: slideInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none; */
+
+  /* SHORTHAND */
+
+  /* animation: slideInLeft 1s ease 0s 1 normal none; */
+  /* animation: slideInLeft 1s ease-in; */
+}
+
+.slideInLeft{
+  animation-name: slideInLeft;
+  animation-timing-function: ease;
+  /* animation-duration: 1s; */
+}
+
+
+/*  ================================= Utility Clases */
+
+.animate{
+  animation-duration: 1s;
+}
+
+.animate--infinite{
+  animation-iteration-count: infinite;
+}
+
+.animate--delay-1s{
+  animation-delay: 1s;
+}
+
+.animate--fast{
+  animation-duration: 0.3s;
+}
+.animate--slow{
+  animation-duration: 3s;
+}

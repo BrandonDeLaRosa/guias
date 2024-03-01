@@ -1,0 +1,682 @@
+Pasos para crear un proyecto node js
+
+
+Crear proyecto node 
+
+---> npm init = da preguntas en la consola
+---> npm init -y == sin preguntas
+---> Express     ---> npm install express
+
+{
+  "name": "primerservidor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Brandon De La Rosa",
+  "license": "ISC"
+}
+
+
+
+
+npm install express
+
+
+app basica express 
+ const express = require('express')
+
+
+const app = express() // Crea una instancia de express en la variable app.
+//va a antender  una peticion del tipo GET en la ruta raiz.
+
+/* 
+? La peticion get recibe dos objetos (request y response)
+?requestes= Toda la info que se envia en la peticon (body, headers  method, etc)
+*/
+
+app.get('/', (req, res) => {
+    res.send('hello World');
+    //! al hacer una peticion al get de app ==> respondera con hello world.
+});
+
+
+//? el puerto debe estar entre 1024 -- 65535
+app.listen(1025, () => {
+    console.log('Servidor corriendo en el puerto 1025');
+})
+
+
+
+=================================================================================================
+
+Librerias para conexion y majeo de datos con postgreSQL
+
+npm install 
+
+pg 
+pg-hstore 
+sequelize
+
+====================================================================================================
+
+ npm install nodemon -D
+
+
+======================================================================================================
+
+const express = require('express'):
+
+
+const app = express ();}
+
+const PORT = 1000;
+
+app.get('/', (req,resp) => {
+    resp.send('Welcome to estetica de perros');
+});
+
+app.listen(PORT , () => {
+    console.log((`Servidor corriendo en el puerto ${PORT}`));
+});
+
+=================================================================================================
+
+Crear carpeta utils y crear archivo database.js
+
+
+const { Sequelize } = require('sequelize');
+
+const db = new Sequelize({
+    database:"canineAesthetics",
+    port: 5432,
+    host:"localhost",
+    username:"postgres",
+    password: "root",
+    dialect:"postgres",
+    // logging:"false",
+});
+
+module.exports = db;
+
+
+
+============================================================================================
+
+
+AUTENTICACION DE LA BASE DE DATOS.
+
+
+const express = require('express');
+const db = require('./utils/database');
+
+
+const app = express ();
+
+db.authenticate()
+ .then((result) => {
+    console.log("Conexion exitosa :)");    
+}).catch((error) => {
+    console.log(error);
+});
+
+const PORT = 1000;
+
+app.get('/', (req,resp) => {
+    resp.send('Welcome to estetica de perros');
+});
+
+app.listen(PORT , () => {
+    console.log((`Servidor corriendo en el puerto ${PORT}`));
+});
+
+
+
+==============================================================================================
+
+CREAR MODELOS NECESARIOS.
+
+
+const { DataTypes } = require('sequelize');
+const db = require ('../utils/database');
+
+
+const Doctors = db.define('Doctors', {
+    id:{
+        type: DataTypes.INTEGER,
+        primaryKey:true,
+        autoIncrement: true,
+        allowNull:false
+    },
+    name: {
+        type:DataTypes.STRING(30),
+        allowNull:false,
+    },
+    lastname:{
+        type:DataTypes.STRING(35),
+    },
+    username: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        unique: true
+    },
+    email: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        unique: true,
+        validate:{
+            isEmail: true
+        }
+    },
+    password: {
+        type: DataTypes.STRING(40),
+        allowNull:false
+    }
+});
+
+module.exports = Doctors;
+
+=================================================================================
+
+
+=================================================================================================================================================
+
+PARA SINCRONIZAR CON DB ES NECESARIO EXPORTAR EN LOS MODELOS E IMPORTARLOS EN APP:JS
+
+const express = require('express');
+const db = require('./utils/database');
+const Doctors = require ('./models/Doctors')    <----
+const Patients = require ('./models/Patients')  <---- AUNQUE NO SE ESTEN LLAMANDO AUN EN LA APP, SI NO SE PONEN LAS IMPORTS NO APARECERAN EN LA DB.
+
+const app = express ();
+
+db.authenticate()
+ .then((result) => {
+    console.log("Conexion exitosa :)");    
+}).catch((error) => {
+    console.log(error);
+});
+
+// db.sync()
+db.sync({force:true}) 
+  .then(() => {
+    console.log('Database synchronized successfully');
+  })
+  .catch((error) => {
+    console.error('Error synchronizing database:', error);
+  });
+
+const PORT = 1000;
+
+app.get('/', (req,resp) => {
+    resp.send('Welcome to estetica de perros');
+});
+
+app.listen(PORT , () => {
+    console.log((`Servidor corriendo en el puerto ${PORT}`)); 
+});
+
+
+==============================================================================================================================================
+
+RELACION DE TABLAS.
+
+
+const Doctors = require("./Doctors")
+const Patients = require("./Patients");
+const PetOwner = require("./PetOwner");
+const Treatment = require("./Treatment");
+
+
+
+const initModels = () => {
+    Doctors.hasMany(Patients, { foreignKey: 'doctorId'});
+    Patients.hasMany(Treatment,{foreignKey: 'patientId'});
+    PetOwner.hasMany(Patients,{foreignKey: 'petOwnerId'})
+}
+
+module.exports = initModels;
+
+
+========================================================
+
+EJECUCION EN DB;
+
+
+
+// ! Relacion de tablas.
+const initModels = require('./models/InitModels')
+initModels();
+
+
+const app = express ();
+
+db.authenticate()
+ .then((result) => {
+    console.log("Conexion exitosa :)");    
+}).catch((error) => {
+    console.log(error);
+});
+
+
+
+
+==============================================================================
+
+MVC model.
+
+Servicios se comunican con la db luego el controller ejecuta las promoseas de services y el controlador se ejecuta en routes donde va la ruta de la peticion.
+Posteriormente se ejecuta routes en app para completar el proceso.
+
+
+
+===================================================================================
+
+1°  SERVICES 
+
+const Doctors = require("../models/Doctors");
+
+
+class DoctorServices {
+
+    static async getAllDoctors(){
+        try {
+            const doctors = await Doctors.findAll();
+            return doctors
+        } catch (error) {
+            throw (error)
+        }
+    }
+
+}
+
+module.exports = DoctorServices;
+
+
+
+=======================================================================================
+
+ 2° CONTROLLERS
+
+
+const DoctorServices = require("../services/Doctor.services")
+
+
+const getDoctors = async (req, res) => {
+    try {
+        const doctors = await DoctorServices.getAllDoctors();
+        res.status(200).json(doctors)
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+
+
+module.exports = {
+    getDoctors
+}
+
+
+
+=========================================================================================
+
+3° ROUTES
+
+
+const  { Router } = require ('express');
+const { getDoctors } = require('../controllers/DoctorControllers');
+
+
+const router = Router();
+
+router.get('/api/v1/doctors', getDoctors);
+
+
+module.exports = router; 
+
+
+
+================================================================================================
+
+
+EJECUCION EN APP.js
+
+
+
+const express = require('express');
+const db = require('./utils/database');
+const DoctorRoutes = require ('./routes/Doctor.Routes')      <---------------------------------------
+const Patients = require ('./models/Patients');
+const Treatment = require ('./models/Treatment');
+const PetOwner = require ('./models/PetOwner');
+
+// ! Relacion de tablas.
+const initModels = require('./models/InitModels')
+initModels();
+
+
+const app = express ();
+
+db.authenticate()
+ .then((result) => {
+    console.log("Conexion exitosa :)");    
+}).catch((error) => {
+    console.log(error);
+});
+
+// db.sync()
+db.sync({force:true}) 
+  .then(() => {
+    console.log('Database synchronized successfully');
+  })
+  .catch((error) => {
+    console.error('Error synchronizing database:', error);
+  });
+
+const PORT = 1000;
+
+app.use(DoctorRoutes);                 <------------------------------------------
+
+
+
+
+app.get('/', (req,resp) => {
+    resp.send('Welcome to estetica de perros');
+});
+
+app.listen(PORT , () => {
+    console.log((`Servidor corriendo en el puerto ${PORT}`)); 
+});
+
+
+
+
+==============================================================================================================================
+
+EAGER LOADING...
+
+
+		Estructura basica 
+
+
+static async getAllDoctors(){
+        try {
+            const doctors = await Doctors.findAll({             <-----------------------
+                include: [
+                    {
+                        model: Patients,
+                        attributes: ["id","name", "species", "breed"]
+                    }
+                ]
+            });                                                <----------------------------------
+            return doctors
+        } catch (error) {
+            throw (error)
+        }
+    }
+
+
+
+
+		Estrutura de anidacion.
+
+
+
+try {
+            const allStudents = await Students.findAll(
+                {					 <------------------------------------------------
+
+                    // attributes: { exclude: ['createdAt', 'updatedAt'] },
+                    include: [
+                        {
+                            model: SchoolAdmin,
+                            attributes: ['firstname', 'lastname', 'username']
+                        },
+                        {
+                            model: StudentsClasses, include: [{
+                                    model: Classes,
+                                    attributes: ["id", "name", "description"],
+                                    include:[{
+                                        model:Teachers,
+                                        attributes: ['id','firstname', 'lastname']
+                                    }]
+                                }]
+                        }
+                    ]
+
+                }					<------------------------------------------------
+            );
+
+
+
+
+
+NOTA: Asegurarse de realizar correctamente las relaciones de tablas (belongTo y hasMany).  Sino dara error en algunas peticiones de eager loading.
+
+
+
+
+
+======================================================================================================================================================
+
+ENCRIPTACION DE CONTRASEÑAS...
+bcrypt <---
+
+-instalacion = npm i bcrypt
+-importar
+- const salt = await bcrypt.genSalt(10).
+- const  passwordHash = await bcrypt.hash(newUser.password, salt)
+- res.status(201).json(passwordHash)
+
+
+Para su correcta creacion se utiliza un hook de sequelize (beforeCreate)
+Dentro del modelo, se encripta la info.
+
+creacion de hook
+
+
+.hooks:{
+        beforeCreate: async (User) => {  //! <-- El parametro es una instancia de req.body.
+            try {
+                const salt = await bcrypt.genSalt(10);
+                const passwordHash = await bcrypt.hash(User.password, salt);
+                User.password = passwordHash
+            } catch (error) {
+                next({
+                    status: 500,
+                    message: error.message,
+                    name: error.name
+                })
+            }
+        }
+    }
+
+
+
+======================================================================================================================================================
+
+LOGIN
+
+Crear controller de authentication.
+
+const DoctorServices = require("../services/Doctor.services");
+
+
+const authLogin = async (req,res,next) => {
+    try {
+    const {email, password} = req.body;  //! En params esta la contraseña en texto plano.
+    const doc = await DoctorServices.authDoctor(email);  //! En doc ya esta la contraseña hasheada.
+    if(!doc){ 
+        return next({
+            status: 400,
+            message: "Invalid email",
+            error: "user not found!"
+        });
+    }else{
+
+    }
+    } catch (error) {
+        
+    }
+}
+
+module.exports = authLogin;
+
+
+=================================================================================================================================================================
+
+Crear Service (Se crea LA FUNCION DENTRO DEL services correpondiente(Si es de buscar users, doctors, etc. En este caso se realizop dentro de Doctor.services.js)
+
+const DoctorServices = require("../services/Doctor.services");
+
+
+const authLogin = async (req,res,next) => {
+    try {
+    const {email, password} = req.body;  //! En params esta la contraseña en texto plano.
+    const doc = await DoctorServices.authDoctor(email);  //! En doc ya esta la contraseña hasheada.
+    if(!doc){ 
+        return next({
+            status: 400,
+            message: "Invalid email",
+            error: "user not found!"
+        });
+    }else{
+
+    }
+    } catch (error) {
+        
+    }
+}
+
+module.exports = authLogin;
+
+
+
+Funcion completa, validandod atos obtenidos del req.body y de los datos registrados en la base de datos.
+
+
+const DoctorServices = require("../services/Doctor.services");
+const bcrypt = require('bcrypt')
+
+const authLogin = async (req,res,next) => {
+    try {
+    const {email, password} = req.body;  //! En params esta la contraseña en texto plano.
+    const doc = await DoctorServices.authDoctor(email);  //! En doc ya esta la contraseña hasheada.
+    if(!doc){ 
+        return next({
+            status: 400,
+            message: "Invalid email",
+            error: "user not found!"
+        });
+    }
+
+    const isValid = await bcrypt.compare(password, doc.password);         
+
+    if(!isValid){
+        return next({
+            status: 400,
+            message: "Wrong password",
+            error: "Invalid password"
+        });
+    }
+    res.json({
+        name:doc.name,
+        lastname: doc.lastname,
+        username: doc.username,
+        email: doc.email
+    })
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = {
+    authLogin
+};
+
+Previo a la consulta, importar en app.js y ejecutar con app.use
+
+
+
+======================================================================================================================================
+
+AUTENTICACION Y AUTORIZACION 
+
+
+INSTALL = npm install jsonwebtoken
+
+
+Crear archivo Athu.services.js
+
+
+Dentro seguir el codigo asincrono de la documentacion.
+
+
+const jwt = require('jsonwebtoken');
+
+class AutheServices{
+    static genToken(payload){
+        try {
+            const token = jwt.sign(payload, "brandon",{
+                algorithm: "HS512",
+                expiresIn:"5m"
+            });
+            return token
+        } catch (error) {
+            throw(error)            
+        }
+    }
+}
+
+
+
+Consumo del servico en el controller.
+
+const authLogin = async (req,res,next) => {
+    try {
+    const {email, password} = req.body;  //! En params esta la contraseña en texto plano.
+    const doc = await DoctorServices.authDoctor(email);  //! En doc ya esta la contraseña hasheada.
+    if(!doc){ 
+        return next({
+            status: 400,
+            message: "Invalid email",
+            error: "user not found!"
+        });
+    }
+
+    const isValid = await bcrypt.compare(password, doc.password);
+
+    if(!isValid){
+        return next({
+            status: 400,
+            message: "Wrong password",
+            error: "Invalid password"
+        });
+    }
+    const {id,name,lastname,username} = doc
+    const token = AuthServices.genToken({id,name,lastname,username});    <-------------------
+    res.json({
+        id,
+        name,
+        lastname,
+        username,
+        email,
+        token
+    })
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+
+===================================================================================================================================
+
+Middleware de autenticacion para dar validez al usuarios en rutas rpotegidas.
+
+1hr, 40min
+semana 5 authenticcation.

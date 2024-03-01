@@ -1,0 +1,955 @@
+Informacion general de Node js y librerias .
+
+
+Back-end -- Front End (meme).
+
+QUE ES UN SERVIDOR---> es una computadora, que se encarga de satisfacer o brindar la informacion qye un clinte pide.
+-Un cliente ---> Todo dispositivo que se conecte a un servidor para hacer una peticion.
+
+CLIENTE ---> UN REQUEST --> DOMAIN NAME SYSTEM (localiza donde esta la direccion que pide el cliente)
+----> el servidor procesa, filtra , etc ---> manda RESPONSE.
+
+
+https ---> Hyper Text Transfer Protocol Secure
+
+http:// academlo.com/cursos 
+
+(http = protocolo para la transfer de info).
+ (academlo.com =seccion donde se encuentra el nombre del dominio junto a la extension usada: .com .org .site .ect).
+
+
+-------------------------- http codigos de estado de respuesta. ----------------------------
+Se dividen en 5 grupos:
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+https://http.cat/
+
+-informativos. (100's)
+-satisfactorios (200´s)
+-redirecciones (300's)
+-errores del cliente (400's)  
+    MAS IMPORTANTES (400 - 404, TODO LO QUE UN CLIENTE ESTA HACIENDO MAL 
+-codifos de errores de servidor. (500's)
+
+
+# Servidor
+
+Se compone de las siguientes unidades 
+
+<aside>
+📌 CPU
+RAM
+SSD
+
+</aside>
+
+En estos servidores podemos alojar nuetras aplicaciones para poder atender peticiones que deseemos. 
+
+Tenemos diferentes tipos de opciones para poder alojar nuestras aplicaciones 
+
+- IaaS ( Infrastructure as a Service )
+- PaaS ( Platform as a Service )
+- SaaS ( Software as a Service )
+
+
+Que es una libreria es una herramienta especifica para completar una tarea. 
+
+proyecto de react ---> vamos a npm(ferreteria) para usar librerias ---> axios (herrramienta) ---> consumir api (tarea).
+
+framework = conjunto de librerias. (taller en casa para hacer todo el trabajo).
+
+
+============================= 
+Node no es un lengauaje de programacion es un ENTORNO DE EJECUCION PARA JS.
+
+ENTORNO DE EJECUCION: ES UN LUGAR CON LAS CONDICIONES ADECUADAS PARA FUNCIONAR.
+
+
+
+
+Js era solo una forma de agregar algo de interactividad al servidor de mozilla--> google crea v8 con c++ --> convierte el lenguaje js en lenguaje maquina
+--> quitaron el motro v8 y lo evolucionaron en node el cual permite usar js del lado del servidor.
+
+ES UNA CANCHA DE BASKETBAL creada en la computadora PARA QUE EL JUGADOR (JS) FUNCIONE.
+
+JS es un programa que usa la asincronia debido a que es single threated, lo que significa que tiene solo un hilo, y para evitar pausar otras tareas las deja en modo asincrono.
+
+
+
+Estructura de una peticion http
+
+linea de peticion 
+
+fetch (url, {
+method: 'POST',
+body: JSON.stringify(data),
+headers:{
+'content-Type'
+
+
+
+============================================================================================================================
+
+PG y PG-Hstore...
+
+
+La biblioteca "pg" se refiere a una biblioteca de Node.js utilizada para interactuar con bases de datos PostgreSQL. 
+PostgreSQL es un sistema de gestión de bases de datos relacional de código abierto y altamente potente. La biblioteca "pg" facilita la conexión a bases de datos PostgreSQL desde una aplicación Node.js, 
+permitiendo realizar consultas y gestionar la comunicación con la base de datos.
+
+En cuanto a "pg-hstore", es una extensión de "pg" que agrega soporte para la manipulación de datos almacenados en formato hstore en PostgreSQL. 
+Hstore es un tipo de datos que permite almacenar pares clave-valor dentro de una columna de base de datos. 
+Es especialmente útil cuando se tiene un conjunto de datos en el que no se conoce de antemano la estructura exacta de los campos.
+
+En resumen, la biblioteca "pg" es esencial para interactuar con bases de datos PostgreSQL en Node.js, 
+mientras que "pg-hstore" proporciona funciones adicionales para trabajar con datos en formato hstore dentro de 
+PostgreSQL.
+
+
+
+=======================================================================================================
+
+
+Sequelize:
+
+Sequelize es una biblioteca de Node.js que proporciona un ORM (Object-Relational Mapping) para bases de datos relacionales, como PostgreSQL, MySQL, SQLite y MSSQL.
+Permite interactuar con bases de datos de una manera orientada a objetos, utilizando modelos para representar tablas y consultas de base de datos como operaciones en estos modelos.
+Facilita la creación, consulta, actualización y eliminación de registros en la base de datos sin tener que escribir directamente en SQL, lo que hace que el código sea más legible y mantenible.
+Nodemon:
+
+Nodemon es una herramienta de desarrollo para Node.js que ayuda a automatizar el reinicio de la aplicación cada vez que se detectan cambios en el código fuente.
+Facilita el desarrollo al eliminar la necesidad de reiniciar manualmente la aplicación cada vez que se realizan cambios, lo que acelera el proceso de desarrollo y mejora la productividad.
+Es especialmente útil durante la fase de desarrollo para mantener el servidor en ejecución y aplicar cambios en tiempo real.
+Sequelize-cli (sequelize command-line interface):
+
+Sequelize-cli es una interfaz de línea de comandos que acompaña a Sequelize y proporciona herramientas para la gestión de la base de datos y la generación de código relacionado con Sequelize.
+Con Sequelize-cli, puedes realizar tareas como la creación de modelos, migraciones y semillas de datos, facilitando la administración y evolución de la base de datos.
+Ayuda a automatizar ciertas operaciones relacionadas con la base de datos, como la creación de tablas, la actualización del esquema y la manipulación de datos iniciales.
+En resumen, Sequelize facilita la interacción con bases de datos relacionales mediante un modelo de objetos, Nodemon ayuda en el desarrollo al reiniciar automáticamente 
+la aplicación cuando se detectan cambios, y Sequelize-cli proporciona herramientas de línea de comandos para administrar y evolucionar la base de datos en conjunción con Sequelize.
+
+
+
+==========================================================================================================
+
+
+Morgan:
+
+morgan es una biblioteca de registro de solicitudes (request logger) para Node.js.
+Se utiliza para registrar detalles de las solicitudes HTTP, como la dirección IP del cliente, el método HTTP utilizado, la URL solicitada, el código de estado de la respuesta, el tamaño de la respuesta, y otros detalles relevantes.
+Facilita el seguimiento y la depuración de las solicitudes entrantes en el servidor.
+Puede personalizarse para adaptarse a los requisitos específicos del registro.
+
+
+
+Ejemplo de uso:
+
+javascript
+Copy code
+const express = require('express');
+const morgan = require('morgan');
+
+const app = express();
+
+// Usar Morgan como middleware para registrar las solicitudes
+app.use(morgan('combined'));
+
+// Resto de la configuración y rutas de la aplicación
+
+
+
+Cors:
+
+cors es una biblioteca utilizada para gestionar los problemas de política de mismo origen (Same-Origin Policy) en aplicaciones web.
+La Política de Mismo Origen es un mecanismo de seguridad que restringe cómo los recursos de una página web se pueden solicitar desde otro dominio diferente al que sirvió la página original.
+Al habilitar CORS (Cross-Origin Resource Sharing) mediante la biblioteca cors, se permiten solicitudes HTTP desde dominios diferentes al dominio del servidor.
+cors agrega y maneja los encabezados HTTP necesarios para permitir o restringir las solicitudes entre orígenes.
+
+
+
+Ejemplo de uso:
+
+javascript
+Copy code
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+// Habilitar CORS para todas las rutas
+app.use(cors());
+
+// Resto de la configuración y rutas de la aplicación
+Estas bibliotecas son especialmente útiles en el desarrollo de aplicaciones web modernas que se comunican con servidores desde diferentes dominios, como aplicaciones de una sola página (SPA) que consumen una API REST desde un servidor 
+separado. La combinación de morgan y cors puede mejorar la funcionalidad y la experiencia de desarrollo al proporcionar registros detallados de solicitudes y permitir la comunicación entre diferentes dominios de manera segura.
+
+
+
+
+=====================================================================================================================================================================
+
+
+Ejemplo de servidor basico con express
+
+
+
+Este código es un ejemplo básico de un servidor web usando Express, un popular marco web para Node.js. Vamos a desglosar el código paso a paso:
+
+javascript
+Copy code
+
+
+// Importar el módulo 'express'
+const express = require('express');
+
+// Crear una aplicación Express
+const app = express();
+
+Importar el módulo 'express': En la primera línea, se importa el módulo express que previamente debe haber sido instalado en el proyecto mediante npm install express. Este módulo proporciona funcionalidades para crear servidores web y manejar rutas, middleware, etc.
+
+Crear una aplicación Express: Se crea una instancia de la aplicación Express llamada app. A partir de este punto, app se utiliza para configurar rutas, manejar solicitudes y respuestas, y definir cómo se comporta el servidor.
+
+javascript
+Copy code
+
+
+// Definir un puerto en el cual el servidor escuchará las solicitudes
+const PORT = 1000;
+
+// Configurar una ruta para manejar solicitudes GET en la raíz del servidor
+app.get('/', (req, resp) => {
+    // Responder con un mensaje de bienvenida cuando se accede a la raíz
+    resp.send('Welcome to estetica de perros');
+});
+
+// Iniciar el servidor y hacer que escuche en el puerto definido
+app.listen(PORT, () => {
+    console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
+
+
+
+Definir el puerto y configurar una ruta:
+
+Se define la constante PORT con el valor 1000 como el puerto en el cual el servidor escuchará las solicitudes.
+Se utiliza app.get para definir una ruta para manejar solicitudes HTTP GET en la raíz ('/') del servidor. Cuando se accede a la raíz, se ejecutará la función 
+de devolución de llamada que recibe dos parámetros: req (objeto de solicitud) y resp (objeto de respuesta).
+En este caso, cuando alguien accede a la raíz, el servidor responde con el mensaje "Welcome to estetica de perros".
+Iniciar el servidor:
+
+Se utiliza app.listen para iniciar el servidor y hacer que escuche en el puerto definido (PORT).
+La función de devolución de llamada proporciona una salida en la consola indicando que el servidor ha comenzado a escuchar en el puerto especificado.
+En resumen, este código configura un servidor web simple usando Express que responde con un mensaje de bienvenida cuando se accede a la raíz del servidor. 
+El servidor escucha en el puerto 1000.
+
+
+=============================================================================================================================================================
+
+
+Este código configura y exporta una instancia de Sequelize, que es un ORM (Object-Relational Mapping) para bases de datos relacionales en Node.js. Vamos a desglosar el código paso a paso:
+
+javascript
+Copy code
+
+
+// Importar la clase Sequelize del módulo 'sequelize'
+const { Sequelize } = require('sequelize');
+
+// Crear una instancia de Sequelize para interactuar con la base de datos
+const db = new Sequelize({
+    // Configuración de la conexión a la base de datos
+    database: "canineAesthetics",
+    port: 5432,
+    host: "localhost",
+    username: "postgres",
+    password: "root",
+    dialect: "postgres",
+    // Otras opciones de configuración pueden agregarse según sea necesario
+    // logging: false, // Descomentar para desactivar los registros de consultas SQL
+});
+
+// Exportar la instancia de Sequelize configurada
+module.exports = db;
+
+
+
+Importar la clase Sequelize:
+
+
+En la primera línea, se importa la clase Sequelize del módulo sequelize. Esto es necesario para crear una instancia de Sequelize y configurar la conexión a la base de datos.
+Crear una instancia de Sequelize:
+
+Se crea una instancia de Sequelize llamada db. Esta instancia se utilizará para interactuar con la base de datos PostgreSQL.
+En la configuración de la instancia de Sequelize, se proporcionan los detalles de conexión a la base de datos, como el nombre de la base de datos (database), el puerto (port), el host (host), el nombre de usuario (username), la contraseña (password), y el dialecto de la base de datos (dialect).
+Configuración de la conexión a la base de datos:
+
+database: Nombre de la base de datos a la que se conectará la aplicación.
+port: Número del puerto en el que la base de datos PostgreSQL está escuchando.
+host: Dirección del host donde se encuentra la base de datos.
+username: Nombre de usuario para autenticarse en la base de datos.
+password: Contraseña asociada al usuario.
+dialect: Tipo de base de datos que Sequelize debe usar (en este caso, "postgres" para PostgreSQL).
+Otras opciones de configuración:
+
+Puedes agregar otras opciones de configuración según tus necesidades. En este código, hay una línea comentada (// logging: false) que muestra cómo desactivar los registros de consultas SQL. Puedes descomentar esa línea si no deseas ver los registros detallados de las consultas SQL en la consola.
+Exportar la instancia de Sequelize configurada:
+
+Al final del archivo, la instancia de Sequelize configurada (db) se exporta para que pueda ser utilizada en otros archivos de tu aplicación.
+En resumen, este código establece una conexión a una base de datos PostgreSQL utilizando Sequelize y exporta la instancia de Sequelize configurada para su uso en otras partes de la aplicación.
+
+
+
+
+===============================================================================================================================================================================
+
+
+
+Claro, vamos a desglosar cada sección del modelo, comenzando desde las importaciones:
+
+Importaciones:
+
+javascript
+Copy code
+const { DataTypes } = require('sequelize');
+const db = require('../utils/database');
+DataTypes: Es parte de Sequelize y proporciona una colección de tipos de datos que puedes usar al definir 
+los atributos de tu modelo. Por ejemplo, DataTypes.STRING para cadenas, DataTypes.INTEGER para enteros, etc.
+
+db: Esto parece ser una instancia de Sequelize que representa la conexión a tu base de datos. Se importa desde '../utils/database'.
+
+Definición del Modelo:
+
+javascript
+Copy code
+const Doctors = db.define('Doctors', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+    },
+    name: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+    },
+    lastname: {
+        type: DataTypes.STRING(35),
+    },
+    username: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        unique: true
+    },
+    email: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        unique: true,
+        validate: {
+            isEmail: true
+        }
+    },
+    password: {
+        type: DataTypes.STRING(40),
+        allowNull: false
+    }
+});
+db.define('Doctors', {...}): Este método se utiliza para definir un nuevo modelo, y en este caso, está definiendo un modelo llamado 'Doctors'.
+
+Atributos:
+
+id: Atributo que representa el ID del doctor. Es un entero, sirve como clave primaria, se autoincrementa y no puede ser nulo.
+
+name: Atributo que representa el nombre del doctor. Es una cadena con una longitud máxima de 30 caracteres y no puede ser nulo.
+
+lastname: Atributo que representa el apellido del doctor. Es una cadena con una longitud máxima de 35 caracteres. Puede ser nulo.
+
+username: Atributo que representa el nombre de usuario del doctor. Es una cadena con una longitud máxima de 30 caracteres, no puede ser nulo y debe ser único.
+
+email: Atributo que representa el correo electrónico del doctor. Es una cadena con una longitud máxima de 50 caracteres, 
+no puede ser nulo, debe ser único y se valida para asegurar que siga el formato de correo electrónico.
+
+password: Atributo que representa la contraseña del doctor. Es una cadena con una longitud máxima de 40 caracteres y no puede ser nulo.
+
+Exportar el Modelo:
+
+javascript
+Copy code
+module.exports = Doctors;
+Esta línea exporta el modelo definido (Doctors), haciéndolo accesible en otras partes de tu aplicación. Puedes importar este modelo en otros archivos
+donde necesites interactuar con la tabla "Doctors" en la base de datos.
+En resumen, este archivo define un modelo de Sequelize para la tabla "Doctors" en tu base de datos, especificando la estructura de dicha tabla.
+
+
+================================================================================================================================================
+
+DBeaver is a free, open-source multi-platform database management tool. It is designed to provide a graphical user interface (GUI) 
+for working with various database management systems (DBMS). DBeaver supports a wide range of databases, making it a versatile tool for developers, 
+database administrators, and data analysts.
+
+Key features of DBeaver include:
+
+Database Connectivity:
+
+DBeaver supports a variety of relational databases, including MySQL, PostgreSQL, SQLite, Oracle, Microsoft SQL Server, and many others.
+It also supports NoSQL databases like MongoDB.
+Cross-Platform:
+
+DBeaver is a cross-platform tool, meaning it can run on Windows, macOS, and Linux. This makes it accessible to users on different operating systems.
+Graphical User Interface:
+
+DBeaver provides a user-friendly graphical interface for database management, allowing users to interact with databases visually.
+Database Explorer:
+
+The tool includes a database explorer that allows users to view and interact with the structure of the database, including tables, views, indexes, and more.
+SQL Editor:
+
+DBeaver comes with a powerful SQL editor that supports syntax highlighting, autocompletion, and other features to assist users in writing and executing SQL queries.
+Data Viewer and Editor:
+
+Users can view and edit data directly in the tool, making it convenient for tasks such as data analysis and data modification.
+Metadata Browser:
+
+DBeaver provides a metadata browser that allows users to explore database metadata, including information about tables, columns, and relationships.
+Data Transfer and Export:
+
+DBeaver supports data transfer and export features, enabling users to move data between different databases and export data in various formats.
+Advanced Features:
+
+It includes advanced features like ER (Entity-Relationship) diagrams, database schema compare, and version control integration.
+Overall, DBeaver is a versatile and powerful tool for working with databases, suitable for both beginners and experienced database professionals.
+Its open-source nature and wide range of supported databases make it a popular choice in the database management community.
+
+
+
+==================================================================================================================================================================
+
+
+
+El patrón de diseño Modelo-Vista-Controlador (MVC) es un enfoque arquitectónico utilizado en el desarrollo de software 
+para organizar y estructurar el código de una manera que facilite la escalabilidad, mantenibilidad y reutilización del 
+código. En Node.js, este patrón se puede implementar para construir aplicaciones web de manera organizada.
+
+A continuación, se explica cada componente del patrón MVC en el contexto de una aplicación Node.js:
+
+Modelo (Model):
+
+El modelo representa la capa de datos y lógica de negocio de la aplicación. Es responsable de interactuar con la base de datos, 
+realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) y gestionar la lógica de negocio.
+En Node.js, el modelo puede utilizar bibliotecas como Mongoose (para MongoDB), Sequelize (para bases de datos relacionales), 
+u otras dependiendo del tipo de base de datos que estés utilizando.
+Vista (View):
+
+La vista es la capa de presentación que se encarga de mostrar la interfaz de usuario y presentar los datos al usuario. En una 
+aplicación web, la vista generalmente consiste en HTML, CSS y a veces JavaScript para la interactividad del cliente.
+En Node.js, las plantillas de vista como EJS, Pug (antes conocido como Jade), o Handlebars son comunes para generar el HTML 
+dinámicamente basado en los datos del modelo.
+Controlador (Controller):
+
+El controlador actúa como intermediario entre el modelo y la vista. Es responsable de recibir las solicitudes del usuario, procesar 
+la entrada, interactuar con el modelo para realizar operaciones en la base de datos y luego renderizar la vista correspondiente.
+En Node.js, los controladores son funciones o conjuntos de funciones que manejan rutas específicas y están vinculados a rutas en tu 
+aplicación Express, por ejemplo.
+A continuación, se presenta un ejemplo básico de cómo podría verse la estructura MVC en una aplicación Node.js utilizando Express:
+
+
+javascript
+Copy code
+// Estructura de carpetas
+// - controllers/
+//   - userController.js
+// - models/
+//   - userModel.js
+// - views/
+//   - userView.ejs
+// - app.js
+
+// userModel.js (Modelo)
+const mongoose = require('mongoose');
+const userSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  // Otros campos...
+});
+const User = mongoose.model('User', userSchema);
+module.exports = User;
+
+// userController.js (Controlador)
+const express = require('express');
+const router = express.Router();
+const User = require('../models/userModel');
+
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.render('userView.ejs', { users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error al obtener usuarios');
+  }
+});
+
+module.exports = router;
+
+// userView.ejs (Vista)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+</head>
+<body>
+  <h1>User List</h1>
+  <ul>
+    <% users.forEach(user => { %>
+      <li><%= user.username %> - <%= user.email %></li>
+    <% }); %>
+  </ul>
+</body>
+</html>
+
+// app.js
+const express = require('express');
+const mongoose = require('mongoose');
+const userController = require('./controllers/userController');
+
+const app = express();
+
+// Configuración de conexión a la base de datos
+mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Configuración de la aplicación
+app.set('view engine', 'ejs'); // Motor de plantillas EJS
+app.use('/api', userController); // Rutas gestionadas por el controlador
+
+// Iniciar el servidor
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
+});
+Este es un ejemplo básico, y las aplicaciones reales pueden tener estructuras más complejas según los requisitos 
+y el tamaño del proyecto. El MVC en Node.js ayuda a organizar el código, facilita la colaboración y mejora la mantenibilidad del software.
+
+
+
+
+
+=======================================================================================================================================================
+
+
+
+Este código parece ser un servicio (DoctorServices) en una aplicación Node.js que utiliza Sequelize como ORM (Object-Relational Mapping)
+para interactuar con una base de datos. Vamos a desglosar el código a detalle:
+
+javascript
+Copy code
+// Importa el modelo "Doctors" definido en "../models/Doctors"
+const Doctors = require("../models/Doctors");
+
+// Define la clase DoctorServices
+class DoctorServices {
+    // Método estático para obtener todos los doctores
+    static async getAllDoctors() {
+        try {
+            // Utiliza el modelo "Doctors" para realizar una consulta de todos los doctores en la base de datos
+            const doctors = await Doctors.findAll();
+
+            // Retorna los doctores obtenidos
+            return doctors;
+        } catch (error) {
+            // En caso de error, lanza la excepción
+            throw error;
+        }
+    }
+}
+
+// Exporta la clase DoctorServices para que pueda ser utilizada en otros archivos
+module.exports = DoctorServices;
+Explicación detallada:
+
+Importación del Modelo "Doctors":
+
+javascript
+Copy code
+const Doctors = require("../models/Doctors");
+Importa el modelo Doctors desde el archivo correspondiente en la carpeta "../models/Doctors". Este modelo representa la estructura de la tabla de doctores en la base de datos.
+Definición de la Clase "DoctorServices":
+
+javascript
+Copy code
+class DoctorServices {
+Define una clase llamada DoctorServices que contendrá métodos relacionados con la lógica de negocio o servicios relacionados con los doctores.
+Método Estático "getAllDoctors":
+
+javascript
+Copy code
+static async getAllDoctors() {
+Define un método estático llamado getAllDoctors que se encarga de obtener todos los doctores en la base de datos.
+javascript
+Copy code
+try {
+    const doctors = await Doctors.findAll();
+    return doctors;
+} catch (error) {
+    throw error;
+}
+Utiliza el método findAll() proporcionado por Sequelize para realizar una consulta que obtiene todos los registros de doctores en la tabla.
+En caso de éxito, retorna los doctores obtenidos.
+En caso de error, lanza la excepción para que pueda ser manejada en otro lugar.
+Exportación de la Clase "DoctorServices":
+
+javascript
+Copy code
+module.exports = DoctorServices;
+Exporta la clase DoctorServices para que pueda ser utilizada en otros archivos de la aplicación.
+En resumen, este módulo proporciona un servicio (DoctorServices) con un método estático (getAllDoctors) que utiliza Sequelize para 
+realizar una consulta y obtener todos los registros de doctores en la base de datos. Este servicio puede ser utilizado en otras 
+partes de la aplicación para interactuar con la lógica relacionada con los doctores.
+
+
+
+
+===========================================================================================================================================================
+
+
+Para que sirven las classes asincronas.
+
+
+En JavaScript, las clases estáticas asincrónicas no son una construcción estándar del lenguaje. Sin embargo, puedo explicarte conceptos relacionados: clases estáticas y funciones asincrónicas.
+
+Clases Estáticas:
+
+Una clase estática en JavaScript se define utilizando la palabra clave static dentro de una clase. Los miembros estáticos son métodos o propiedades que pertenecen a la clase en sí misma, en lugar de a instancias específicas de la clase.
+Los métodos estáticos se invocan en la clase, no en instancias de la clase. No tienen acceso a las instancias de la clase y generalmente se utilizan para realizar operaciones que no dependen del estado de una instancia particular.
+Ejemplo de una clase con un método estático:
+
+javascript
+Copy code
+class MiClase {
+    static miMetodoEstatico() {
+        console.log("Método estático invocado");
+    }
+}
+
+MiClase.miMetodoEstatico(); // Invoca el método estático sin crear una instancia de la clase
+Funciones Asincrónicas:
+
+Una función asincrónica es una función que devuelve una promesa y puede utilizar la palabra clave async. Permite el uso 
+de await dentro de la función, que se utiliza para esperar a que se resuelva una promesa antes de continuar la ejecución.
+Ejemplo de una función asincrónica:
+
+javascript
+Copy code
+async function miFuncionAsincronica() {
+    // Utiliza await para esperar a que se resuelva una promesa
+    const resultado = await obtenerResultadoAsincrono();
+    console.log(resultado);
+}
+Las funciones asincrónicas son útiles cuando se trabaja con operaciones asíncronas, como llamadas a API, lectura y escritura de archivos, etc.
+
+Ahora, si combinamos ambos conceptos, podríamos tener un método estático en una clase que realiza operaciones asíncronas utilizando async y await. Aquí tienes un ejemplo conceptual:
+
+javascript
+Copy code
+class MiClase {
+    static async miMetodoAsincronico() {
+        try {
+            const resultado = await realizarOperacionAsincrona();
+            console.log(resultado);
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+}
+
+MiClase.miMetodoAsincronico();
+En este ejemplo, miMetodoAsincronico es un método estático que utiliza async y await para manejar operaciones asíncronas. 
+Ten en cuenta que este es solo un ejemplo conceptual, y la utilidad de este patrón dependerá de los requisitos específicos de tu aplicación.
+
+
+
+
+==============================================================================================================================================================
+
+Este código parece ser un controlador en el contexto de una aplicación web o API construida con Node.js y Express. Vamos a desglosar el código:
+
+Importación del Servicio:
+
+javascript
+Copy code
+const DoctorServices = require("../services/Doctor.services");
+Importa el servicio DoctorServices desde el archivo "../services/Doctor.services". Este servicio probablemente contiene 
+lógica relacionada con la obtención de datos de doctores desde la base de datos.
+Definición de la Función getDoctors:
+
+javascript
+Copy code
+const getDoctors = async (req, res) => {
+    try {
+        const doctors = await DoctorServices.getAllDoctors();
+        res.status(200).json(doctors);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+};
+Define una función llamada getDoctors que actúa como controlador para la ruta o endpoint que maneja la solicitud de obtener la lista de doctores.
+
+Utiliza la palabra clave async para indicar que la función contiene operaciones asíncronas y puede usar await para esperar la resolución de promesas.
+
+Dentro del bloque try, se utiliza await para llamar al método getAllDoctors del servicio DoctorServices. Este método probablemente 
+realiza una consulta a la base de datos para obtener la lista de doctores.
+
+Si la operación es exitosa, responde con un estado HTTP 200 (OK) y envía la lista de doctores en formato JSON como respuesta.
+
+En caso de error, captura la excepción en el bloque catch, responde con un estado HTTP 400 (Bad Request) y envía el error como respuesta en formato JSON.
+
+Exportación de la Función getDoctors:
+
+javascript
+Copy code
+module.exports = {
+    getDoctors
+};
+Exporta la función getDoctors para que pueda ser utilizada en otros archivos de la aplicación. Esto es común cuando se organiza el 
+código en módulos y se separan las rutas, controladores y servicios.
+En resumen, este código representa un controlador que utiliza un servicio para obtener datos de doctores, maneja las operaciones 
+asíncronas utilizando async/await, y responde con un JSON que contiene la lista de doctores o un error en función del resultado de 
+la operación. Este controlador podría ser utilizado en la definición de rutas de una aplicación Express.
+
+
+=========================================================================================================================================
+
+Este código parece ser un controlador en el contexto de una aplicación web o API construida con Node.js y Express. Vamos a desglosar el código:
+
+Importación del Servicio:
+
+javascript
+Copy code
+const DoctorServices = require("../services/Doctor.services");
+Importa el servicio DoctorServices desde el archivo "../services/Doctor.services". Este servicio probablemente contiene lógica relacionada con la obtención de datos de doctores desde la base de datos.
+Definición de la Función getDoctors:
+
+javascript
+Copy code
+const getDoctors = async (req, res) => {
+    try {
+        const doctors = await DoctorServices.getAllDoctors();
+        res.status(200).json(doctors);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+};
+Define una función llamada getDoctors que actúa como controlador para la ruta o endpoint que maneja la solicitud de obtener la lista de doctores.
+
+Utiliza la palabra clave async para indicar que la función contiene operaciones asíncronas y puede usar await para esperar la resolución de promesas.
+
+Dentro del bloque try, se utiliza await para llamar al método getAllDoctors del servicio DoctorServices. Este método probablemente realiza una consulta a la base de datos para obtener la lista de doctores.
+
+Si la operación es exitosa, responde con un estado HTTP 200 (OK) y envía la lista de doctores en formato JSON como respuesta.
+
+En caso de error, captura la excepción en el bloque catch, responde con un estado HTTP 400 (Bad Request) y envía el error como respuesta en formato JSON.
+
+Exportación de la Función getDoctors:
+
+javascript
+Copy code
+module.exports = {
+    getDoctors
+};
+Exporta la función getDoctors para que pueda ser utilizada en otros archivos de la aplicación. 
+Esto es común cuando se organiza el código en módulos y se separan las rutas, controladores y servicios.
+En resumen, este código representa un controlador que utiliza un servicio para obtener datos de doctores, 
+maneja las operaciones asíncronas utilizando async/await, y responde con un JSON que contiene la lista de 
+doctores o un error en función del resultado de la operación. Este controlador podría ser utilizado en la definición de rutas de una aplicación Express.
+
+
+
+=============================================================================================================================
+
+Este código parece ser un archivo de rutas (router) en una aplicación Express de Node.js. Vamos a desglosar el código:
+
+Importación de Módulos y Controladores:
+
+javascript
+Copy code
+const { Router } = require('express');
+const { getDoctors } = require('../controllers/DoctorControllers');
+Importa el objeto Router de Express, que se utiliza para definir rutas.
+Importa la función getDoctors desde el archivo de controladores (../controllers/DoctorControllers). 
+La función getDoctors probablemente es un controlador que maneja las solicitudes relacionadas con los doctores.
+Creación de un Router de Express:
+
+javascript
+Copy code
+const router = Router();
+Crea una instancia de un router utilizando el objeto Router de Express. Este router se utilizará para definir las rutas específicas para la API.
+Definición de Ruta y Asociación con un Controlador:
+
+javascript
+Copy code
+router.get('/api/v1/doctors', getDoctors);
+Define una ruta GET en el endpoint /api/v1/doctors. Cuando se recibe una solicitud GET en esta ruta, se invocará la función getDoctors del controlador DoctorControllers.
+Exportación del Router:
+
+javascript
+Copy code
+module.exports = router;
+Exporta el router para que pueda ser utilizado en otros archivos de la aplicación, especialmente 
+en el archivo principal (usualmente app.js o index.js) donde se configura la aplicación Express.
+En resumen, este archivo configura un router de Express que maneja la ruta GET /api/v1/doctors y 
+asocia esa ruta con la función getDoctors del controlador DoctorControllers. Luego, exporta este router 
+para que pueda ser utilizado en la configuración principal de la aplicación para gestionar las rutas relacionadas con los doctores.
+
+
+
+=====================================================================================================================================
+
+
+METODO POST 
+
+
+La línea de código app.use(express.json()) en una aplicación Express se utiliza para habilitar el middleware que parsea 
+las solicitudes entrantes con formato JSON. Este middleware es esencial cuando estás trabajando con solicitudes POST o 
+cualquier otra solicitud HTTP que envía datos en formato JSON en el cuerpo.
+
+Explicación:
+
+express.json() Middleware:
+
+Este middleware específico se proporciona por Express y es responsable de analizar el cuerpo de las solicitudes entrantes con formato JSON.
+Permite que tu aplicación Express entienda y utilice los datos JSON enviados en el cuerpo de la solicitud.
+Uso de app.use():
+
+app.use() se utiliza para agregar middleware a la cadena de procesamiento de solicitudes de Express.
+express.json() se utiliza como middleware al especificarlo dentro de app.use(express.json()).
+Ejemplo práctico con el método POST:
+
+javascript
+Copy code
+const express = require('express');
+const app = express();
+const PORT = 3000;
+
+// Middleware para analizar el cuerpo de las solicitudes en formato JSON
+app.use(express.json());
+
+// Ruta POST para manejar datos JSON
+app.post('/ejemplo', (req, res) => {
+    const datos = req.body; // req.body contendrá los datos JSON analizados
+    console.log(datos);
+    res.status(200).json({ mensaje: 'Datos recibidos correctamente' });
+});
+
+// Iniciar el servidor
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
+En este ejemplo:
+
+El middleware express.json() permite que el cuerpo de la solicitud POST se analice y esté disponible como req.body.
+Cuando recibes una solicitud POST en la ruta /ejemplo, puedes acceder a los datos JSON enviados en el cuerpo de la solicitud utilizando req.body.
+En resumen, app.use(express.json()) es crucial cuando esperas datos JSON en las solicitudes POST y necesitas que Express los analice y los haga accesibles en el objeto req.body.
+
+
+
+
+===============================================================================================================================
+
+EAGER LOADING
+
+
+El código proporcionado está utilizando Sequelize, un ORM (Object-Relational Mapping) para Node.js, para realizar una consulta a la base de datos. La consulta se realiza en la tabla de estudiantes (Students). Aquí está la explicación del código:
+
+javascript
+Copy code
+try {
+    const allStudents = await Students.findAll(
+        {
+            include: [
+                {
+                    model: SchoolAdmin,
+                    attributes: ['firstname', 'lastname', 'username']
+                },
+                {
+                    model: StudentsClasses,
+                    include: [{
+                        model: Classes,
+                        attributes: ["id", "name", "description"],
+                        include: [{
+                            model: Teachers,
+                            attributes: ['id', 'firstname', 'lastname']
+                        }]
+                    }]
+                }
+            ]
+        }
+    );
+    // Resto del código para manejar los resultados
+} catch (error) {
+    // Manejo de errores en caso de que la consulta falle
+    console.error(error);
+}
+Explicación:
+
+await Students.findAll(...):
+
+Utiliza la función findAll proporcionada por Sequelize para buscar todos los registros en la tabla Students.
+include:
+
+Dentro del objeto de opciones de findAll, hay una propiedad llamada include, que se utiliza para incluir asociaciones en la consulta.
+ Esto es útil para obtener información relacionada de otras tablas.
+model: SchoolAdmin:
+
+Incluye información de la tabla SchoolAdmin asociada con los estudiantes.
+Se especifica que solo se deben incluir las columnas firstname, lastname, y username de la tabla SchoolAdmin.
+model: StudentsClasses:
+
+Incluye información de la tabla StudentsClasses asociada con los estudiantes.
+
+Dentro de StudentsClasses, se anidan otras asociaciones:
+
+model: Classes:
+
+Incluye información de la tabla Classes asociada con StudentsClasses.
+Se especifica que solo se deben incluir las columnas id, name, y description de la tabla Classes.
+include: [{ model: Teachers, attributes: ['id', 'firstname', 'lastname'] }]:
+
+Incluye información de la tabla Teachers asociada con la tabla Classes.
+Se especifica que solo se deben incluir las columnas id, firstname, y lastname de la tabla Teachers.
+En resumen, esta consulta busca todos los estudiantes y, al mismo tiempo, incluye información adicional de las tablas 
+relacionadas como SchoolAdmin, StudentsClasses, Classes, y Teachers. La consulta utiliza las asociaciones definidas en 
+el modelo Sequelize para traer datos relacionados en una única consulta SQL, evitando así problemas de rendimiento 
+asociados con múltiples consultas.
+
+======================================================================================================================================
+
+
+Guiandonos de la documentacion tanto de bcrypt como de sequelize.
+
+La mejor forma de hashear la contraseña o encriptarla es mediante la opcion de ejecutar el hash denro del modelo, usando el hook de sequelize (beforeCreate) 
+el cual al recibir el objeto con la informacion agregada por el usuario y recopilada en el servicio, llega al modelo, antes de crear el usuario, doctor, etc. Toma el codigo de bycrypt, 
+hashea la contraseña y posteriormente crea el objeto ya con la contraseña pasada.
+
+===================================================================================================================================
+
+login 
+
+
+===================================================================================================================================
+
+AUTENTICACION Y AUTORIZACION.
+
+
+Generacion de token para autenticar por medio de JSW.
+
+
+Tiene tres partes 
+
+-header: algoritomo utilizado "HS512"
+-payload (Data del usuario.
+-firma (COn la cual se le da validez al payload
+
+
+
+Se genera el servicio, el cual es consumido por el controlador, una vez corroborado que el usuario existe mediante username/email y contraseña se ejecuta el servicio creando el token.
+Agregandolo a la respuesta de la peticion de auth controller.
