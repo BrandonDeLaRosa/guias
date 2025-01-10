@@ -6,15 +6,18 @@
 
 <head>
     <title>Clase 01</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black
+        }
+    </style>
 </head>
 
 <body>
-    <form action="">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="campo del back" placeholder="Ingresa tu nombre">
-    </form>
 
-    <br><hr>
+    <!-- TODO HEADERS, COMENTARIOS, ETIQUETAS BASICAS -->
 
     <h1>Mi primer heading</h1>
     <h2>Mi segundo heading</h2>
@@ -36,13 +39,144 @@
 
     <p>Yo soy un parrafo mas grande
 
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque non ratione magni sequi <span style="color:rgb(0, 132, 255)">aperiam</span> 
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque non ratione magni sequi <span
+            style="color:rgb(0, 132, 255)">aperiam</span>
         <br>
         dignissimos vero accusantium eligendi sit voluptas!
     </p>
 
-    <a href="https://www.google.com" target="_blank">Ir a google</a> <br> <hr>
-    <img src="./img.png" alt="Soy una imagenb rota" width="500" >
+    <!-- TODO ANCHORS Y ETIQUETA IMG -->
+
+
+    <a href="https://www.google.com" target="_blank">Ir a google</a> <br>
+    <hr>
+    <img 
+    title="imagen 1"
+    src="./img.png" 
+    alt="Soy una imagenb rota" 
+    width="500"
+    hidden
+    >
+    
+    <br>
+    <hr>
+
+    <!-- TODO fORMULARIO fUNCIONES BASICAS -->
+    <h2>Formulario Funciones basicas. </h2>
+
+    <form action="/ruta-del-servidor" method="POST">
+        <!-- * For == sirve oara que al darl click al label se ponga modo focus el campo. debe tener el mismo valor que el identificador (id) -->
+        <label for="name">Name</label>
+        <!-- ** type (tipo de dato que se vba ingresar en el campo). id=' identificador' , name=' nombre del campo en el back', ploaceholder=' que debe ingresar el usuario en el campo.' -->
+        <input type="text" id="name" name="campo-del-back" placeholder="Ingresa tu nombre" value="Brandon">
+
+        <br>
+        <label for="coments">Comentarios</label> <br>
+        <textarea name="comentario" id="coments" rows="10" cols="30"
+            placeholder="Ingresa tus comentarios">Soy un comentario</textarea>
+        <br>
+        <!-- TODO BOTONES -->
+
+        <!--? Opcion 1- No muy util. NO es personalizable. -->
+        <!-- <input type="submit" > -->
+        <!--? Opcion 2 - mas optima 
+        button == se debe usar funciones JS
+        submit == valor por defecto envia el formulario
+        reset == resetea los cvampos a valores predefinidos.
+-->
+        <button type="button">Enviar</button>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+
+    </form>
+    <br>
+    <hr>
+    <!-- TODO LISTADOS. -->
+    <h2>Listado no ordenado</h2>
+
+    <ul>
+        <li>item: 1</li>
+        <li>item: 2</li>
+        <li>item: 3</li>
+        <li>item: 4</li>
+    </ul>
+    <br>
+
+    <h2>Listado ordenado</h2>
+    <ol>
+        <li value="50">Item: 1</li>
+        <li>Item: 2</li>
+        <li>Item: 3</li>
+        <li>Item: 4</li>
+        <li>
+            <ul>
+                <li style="list-style-type: lower-alpha;">Sub Item: 1</li>
+                <li style="list-style-type: lower-greek;">Sub Item: 2</li>
+                <li style="list-style-type: lower-latin;">Sub Item: 3</li>
+                <li style="list-style-type: lower-roman;">Sub Item: 3</li>
+            </ul>
+        </li>
+    </ol>
+    <br>
+    <hr>
+
+    <!-- TODO TABLAS  -->
+
+    <h2>Tablas </h2>
+
+    <table style="width: 500px;">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Producto</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    1
+                </td>
+                <td>
+                    audifonos
+                </td>
+                <td>
+                    $100
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>
+                    pc
+                </td>
+                <td>
+                    $1000
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>
+                    tv
+                </td>
+                <td>
+                    $800.99
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td></td>
+            <td></td>
+            <td>
+                Total: $1900.99
+            </td>
+        </tfoot>
+    </table>
+
+
+    <br>
+    <hr>
 
 </body>
 

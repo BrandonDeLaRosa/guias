@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML-Page</title>
+
+    <style>
+        .mainContainer{
+            display: flex;
+            /* gap: 3rem; */
+            width: 100%;
+        }
+
+        .sec-art{
+            width: 75%;
+        }
+
+        aside{
+            border: 1px solid black;
+            background-color: aqua;
+            width: 25%;
+        }
+
+        section{
+            background-color: aquamarine;
+            
+        }
+        
+        article{
+            background-color: cadetblue;
+        }
+
+        h3{
+            margin: 0px;
+        }
+
+        form{
+            width: 80%;
+        }
+
+        ul{
+            display: flex;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+
+
+
+<body>
+    <header>
+
+        <h1 id="title">Layout basico con HTML</h1>
+            <ul>
+                <ul>
+                    <li style="list-style: none; cursor: pointer;">item 1</li>
+                    <li style="list-style: none; cursor: pointer;">item 2</li>
+                    <li style="list-style: none; cursor: pointer;">item 3</li>
+                </ul>
+            </nav>
+    </header>
+
+    <hr>
+    <br>
+
+    <main>
+
+        <header>
+            <h2>Bienvenido a mi primer layout </h2>
+        </header>
+
+        <br>
+        <hr>
+
+        <div class="mainContainer">
+            <div class="sec-art">
+                <section>
+
+                    <h3>Soy seccion </h3>
+
+                    <p>
+                    <pre>Soy texto pre</pre> dolor sit amet.</p>
+
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore illum magnam iste minima
+                        asperiores
+                        corrupti a explicabo quidem. <strong>Soy texto strong</strong> laborum consectetur totam minima,
+                        magni
+                        reprehenderit corrupti officia magnam, quae veritatis facilis cupiditate ducimus repudiandae
+                        amet
+                        reiciendis dolor sapiente tempora sed repellat, inventore voluptatem quo? Exercitationem eos
+                        ratione
+                        quisquam!
+                    </p>
+
+                    <em>Soy un texto con EM</em>
+
+                </section>
+
+                <br>
+                <hr>
+
+                <article>
+                    <header>
+                        <h3>Soy article</h3>
+                    </header>
+                    <span><small>SOY SMALL</small></span>
+
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse cumque adipisci, aliquam
+                        aspernatur
+                        quod
+                        eligendi est. Aliquam numquam neque facere molestias ullam voluptas quod possimus, provident
+                        quaerat,
+                        excepturi odit officiis placeat est porro doloribus, vero nemo voluptatum delectus accusantium?
+                        Optio
+                        aspernatur fugit sunt laborum illo iure, aliquid iusto repellat accusamus inventore. Cupiditate
+                        quaerat
+                        fugit quod veniam mollitia tenetur nulla temporibus.
+                    </p>
+
+
+                    <cite>
+                        soy cite
+                    </cite> <br>
+
+                    <img hidden title="am random" width="400" src="img.png" alt="imagen aleatoria">
+
+                </article>
+            </div>
+
+            <aside>
+                <h3>Soy aside</h3>
+
+                <ol>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                    <li>Item 4</li>
+                </ol>
+                <form action="">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" placeholder="Ingresa tu nombre">
+                    <input type="email">
+                    <input type="password">
+                    <input type="date">
+                    <input type="file">
+
+                </form>
+            </aside>
+        </div>
+
+    </main>
+
+</body>
+
+<br>
+<hr>
+
+<footer>
+    <h2>Soy footer</h2>
+    <a href="mailto:correo@falso.com">Enviame un correo</a> <br>
+    <a href="https://www.google.com" target="_blank">ir a google</a> <br>
+    <a href="#title"> Ir al incio</a>
+    <br> <br>
+
+</footer>
+
+</html>

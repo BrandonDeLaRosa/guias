@@ -32,3 +32,17 @@
 
 
     //todo  :  ! + tecla tab  === Generar la plantilla de html5 basica.
+
+
+
+
+    //? tags
+
+    // https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf
+
+
+
+    // todo Los estilos que se agregan de forma independiente al usar solo html es debido a USER AGENT STYLESHEET
+
+    // eSTOS SON ESTILOS POR DEFECTO DENTRO DE LOS NAVEGADORES 
+    
