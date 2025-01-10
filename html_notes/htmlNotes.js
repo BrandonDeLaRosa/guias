@@ -45,4 +45,10 @@
     // todo Los estilos que se agregan de forma independiente al usar solo html es debido a USER AGENT STYLESHEET
 
     // eSTOS SON ESTILOS POR DEFECTO DENTRO DE LOS NAVEGADORES 
+
+
+
+
+
+    // 
     
