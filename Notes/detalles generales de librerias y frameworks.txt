@@ -3,7 +3,7 @@ Informacion general de Node js y librerias .
 
 Back-end -- Front End (meme).
 
-QUE ES UN SERVIDOR---> es una computadora, que se encarga de satisfacer o brindar la informacion qye un clinte pide.
+QUE ES UN SERVIDOR---> es una computadora, que se encarga de satisfacer o brindar la informacion que un clinte pide.
 -Un cliente ---> Todo dispositivo que se conecte a un servidor para hacer una peticion.
 
 CLIENTE ---> UN REQUEST --> DOMAIN NAME SYSTEM (localiza donde esta la direccion que pide el cliente)
